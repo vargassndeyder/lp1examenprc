@@ -1,0 +1,27 @@
+--------EJERCICIO 1----------
+SELECT a.last_name,a.hire_date FROM employees A
+Where a.department_id = (SELECT department_id from departments where department_id=(Select department_id from employees where last_name='Zlotkey') and a.last_name !='Zlotkey');
+
+--------EJERCICIO 2----------
+SELECT employee_id, last_name, salary FROM employees where salary>(select avg(salary) from employees) ORDER BY salary ASC;
+
+--------EJERCICIO 3----------
+SELECT employee_id, last_name FROM employees e WHERE e.department_id in(SELECT a.department_id FROM employees a WHERE a.last_name LIKE '%u%') ;
+
+--------EJERCICIO 4----------
+SELECT e.last_name, e.department_id,e.job_id FROM employees e where e.department_id IN (SELECT d.department_id FROM departments d WHERE d.location_id=1700);
+
+--------EJERCICIO 5----------
+SELECT e.last_name, e.salary FROM employees e WHERE e.manager_id IN (SELECT employee_id FROM employees WHERE last_name like 'King');
+
+--------EJERCICIO 6----------
+SELECT e.department_id, e.last_name, e.job_id FROM employees e WHERE e.department_id=(SELECT d.department_id FROM departments d WHERE d.department_name LIKE 'Executive');
+
+--------EJERCICIO 7----------
+SELECT e.last_name, e.salary FROM  employees e WHERE e.salary > (SELECT max(a.salary) FROM employees a WHERE a.department_id = 60) ORDER BY 2;
+
+--------EJERCICIO 8----------
+SELECT a.last_name, d.department_name, a.manager_id, b.last_name , d.manager_id, c.last_name  FROM departments d, employees a LEFT JOIN employees b ON B.EMPLOYEE_ID=A.MANAGER_ID LEFT JOIN employees c ON B.EMPLOYEE_ID=d.manager_id;
+
+--------EJERCICIO 9----------
+SELECT a.employee_id, a.last_name, b.last_name, c.last_name  FROM employees a left join employees b ON B.EMPLOYEE_ID=A.MANAGER_ID left join employees c ON C.EMPLOYEE_ID=B.MANAGER_ID;
